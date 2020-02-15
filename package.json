@@ -1,0 +1,14 @@
+{
+  "name": "rfpm",
+  "version": "1.0.0",
+  "description": "Proyect manager",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "rfpm"
+  ],
+  "author": "Diego Ruiz",
+  "license": "ISC"
+}
