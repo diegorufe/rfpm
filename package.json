@@ -10,5 +10,8 @@
     "rfpm"
   ],
   "author": "Diego Ruiz",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "rfnoderest": "../rfnoderest"
+  }
 }
