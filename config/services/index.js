@@ -10,6 +10,14 @@ function createServices(expressApp, mapDaos) {
     require("./commons/user").user(mapDaos["User"])
   );
   expressApp.addService(
+    "Role",
+    require("./commons/role").rol(mapDaos["Role"])
+  );
+  expressApp.addService(
+    "UserRole",
+    require("./commons/userrole").userrole(mapDaos["UserRole"])
+  );
+  expressApp.addService(
     "Proyect",
     require("./commons/proyect").proyect(mapDaos["Proyect"])
   );

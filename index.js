@@ -1,4 +1,6 @@
 (async () => {
+  // Security
+  const SECURITY = require("./config/security").security;
   // Init database
   const DB = require("./config/db");
   // Start conexion db
@@ -10,11 +12,14 @@
   const rfnoderest = require("rfnoderest").rfnoderest;
 
   const MAP_PROPERTIES_EXPRESS = {
-    API_URL: "/rfpm"
+    // Url for application
+    API_URL: "/rfpm",
+    // Function login for application
+    FUNCTION_SECURITY_LOGIN: SECURITY.login
   };
 
   const EXPRESS_APP = rfnoderest.create_express_app(MAP_PROPERTIES_EXPRESS);
-  
+
   // Create services
   require("./config/services").createServices(EXPRESS_APP, MAP_DAOS);
 
