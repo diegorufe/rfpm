@@ -3,18 +3,24 @@ const rfnoderest = require("rfnoderest").rfnoderest;
 function userrole(paramsDatabase, user, rol) {
   const Sequelize = require("sequelize");
 
-  const UserRole = paramsDatabase.DB_MANAGER.define("usersroles", {
-    userId: {
-      type: Sequelize.INTEGER,
-      primaryKey: true,
-      notNull: true
+  const UserRole = paramsDatabase.DB_MANAGER.define(
+    "usersroles",
+    {
+      userId: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        notNull: true
+      },
+      roleId: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        notNull: true
+      }
     },
-    rolId: {
-      type: Sequelize.INTEGER,
-      primaryKey: true,
-      notNull: true
-    },
-  });
+    {
+      timestamps: false
+    }
+  );
 
   UserRole.belongsTo(user.model, {
     as: "User",
