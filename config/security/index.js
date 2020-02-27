@@ -20,7 +20,7 @@ async function login(expressApp, nick, password) {
     userRoleService != undefined
   ) {
     let filters = [];
-    filters.push(new Filter("nick", "=", test, "and", null, null, null));
+    filters.push(new Filter("nick", "=", nick, "and", null, null, null));
     const resultUserService = await userService.findOne(
       filters,
       null,
