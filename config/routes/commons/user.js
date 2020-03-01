@@ -6,6 +6,14 @@ function user(expressApp) {
    */
   const functionBeforeAction = function(action, req) {
     // TODO
+    let token =
+      req.headers["authorization"] ||
+      req.headers["Authorization"] ||
+      req.headers["x-access-token"];
+
+    token = token.replace("Bearer ", "");
+
+    return req.body;
   };
   /**
    * Function after action
@@ -15,6 +23,7 @@ function user(expressApp) {
    */
   const functionAfterAction = function(action, req, responseData) {
     // TODO
+    return responseData;
   };
 
   expressApp.createRouteService(
