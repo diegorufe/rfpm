@@ -7,16 +7,26 @@ function user(expressApp) {
    * @param {*} req
    */
   const functionBeforeAction = function(action, req) {
-    // TODO
     let dataSession = expressApp.getDataToken(req);
     let bodyRequest = req.body;
 
-    console.log(action);
-    console.log(bodyRequest);
-
     bodyRequest = core.addUserAndDate(action, bodyRequest, dataSession);
 
-    console.log(bodyRequest);
+    if (action == "/add" || action == "/edit") {
+      let data = bodyRequest.data;
+      // If password chnage bcrypt this
+      if (
+        data != null &&
+        data != undefined &&
+        data.passwordChange != null &&
+        data.passwordChange != undefined &&
+        data.passwordChange.trim() != ""
+      ) {
+        data.password = expressApp.bcryptPassword(data.passwordChange);
+      }
+      bodyRequest.data = data;
+      
+    }
 
     return bodyRequest;
   };

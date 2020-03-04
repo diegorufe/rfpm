@@ -25,6 +25,9 @@ function user(paramsDatabase) {
     userUpdateId: {
       type: Sequelize.INTEGER,
       notNull: false
+    },
+    passwordChange: {
+      type: Sequelize.VIRTUAL
     }
   });
 
