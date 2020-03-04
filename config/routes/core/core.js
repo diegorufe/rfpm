@@ -32,7 +32,7 @@ function addUserAndDate(action, bodyRequest, dataSession) {
  * @param {*} action
  * @param {*} responseData
  */
-function addUserUpdateCreateIfAreNull(expressApp, action, responseData) {
+async function addUserUpdateCreateIfAreNull(expressApp, action, responseData) {
   if (
     (action == "/edit" ||
       action == "/add" ||
@@ -42,13 +42,24 @@ function addUserUpdateCreateIfAreNull(expressApp, action, responseData) {
     responseData != undefined
   ) {
     let data = responseData.data;
-    if (data != null && data != undefined) {
+    if (
+      data != null &&
+      data != undefined &&
+      data.dataValues != null &&
+      data.dataValues != undefined
+    ) {
       let userService = expressApp.getService("User");
-      if (data.UserCreate == null || data.UserCreate == undefined) {
-        data.UserCreate = userService.build();
+      if (
+        data.dataValues.UserCreate == null ||
+        data.dataValues.UserCreate == undefined
+      ) {
+        data.dataValues.UserCreate = await userService.build();
       }
-      if (data.UserUpdate == null || data.UserUpdate == undefined) {
-        data.UserUpdate = userService.build();
+      if (
+        data.dataValues.UserUpdate == null ||
+        data.dataValues.UserUpdate == undefined
+      ) {
+        data.dataValues.UserUpdate = await userService.build();
       }
     }
 

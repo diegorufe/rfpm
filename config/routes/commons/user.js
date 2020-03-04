@@ -6,7 +6,7 @@ function user(expressApp) {
    * @param {*} action
    * @param {*} req
    */
-  const functionBeforeAction = function(action, req) {
+  const functionBeforeAction = async function(action, req) {
     let dataSession = expressApp.getDataToken(req);
     let bodyRequest = req.body;
 
@@ -25,7 +25,6 @@ function user(expressApp) {
         data.password = expressApp.bcryptPassword(data.passwordChange);
       }
       bodyRequest.data = data;
-      
     }
 
     return bodyRequest;
@@ -36,7 +35,7 @@ function user(expressApp) {
    * @param {*} req
    * @param {*} responseData
    */
-  const functionAfterAction = function(action, req, responseData) {
+  const functionAfterAction = async function(action, req, responseData) {
     let data = expressApp.getDataToken(req);
     let userService = expressApp.getService("User");
 

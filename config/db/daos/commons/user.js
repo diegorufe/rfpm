@@ -31,6 +31,17 @@ function user(paramsDatabase) {
     }
   });
 
+  User.loadNew = async function() {
+    const instance = await User.build();
+    instance.dataValues.nick = null;
+    instance.dataValues.passwordChange = null;
+    instance.dataValues.password = null;
+    instance.dataValues.userCreateId = null;
+    instance.dataValues.userUpdateId = null;
+
+    return instance;
+  };
+
   User.belongsTo(User, { as: "UserCreate", foreignKey: "userCreateId" });
   User.belongsTo(User, { as: "UserUpdate", foreignKey: "userUpdateId" });
 
