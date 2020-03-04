@@ -1,3 +1,5 @@
+const core = require("../core/core");
+
 function user(expressApp) {
   /**
    * Function before action service
@@ -6,14 +8,17 @@ function user(expressApp) {
    */
   const functionBeforeAction = function(action, req) {
     // TODO
-    let token =
-      req.headers["authorization"] ||
-      req.headers["Authorization"] ||
-      req.headers["x-access-token"];
+    let dataSession = expressApp.getDataToken(req);
+    let bodyRequest = req.body;
 
-    token = token.replace("Bearer ", "");
+    console.log(action);
+    console.log(bodyRequest);
 
-    return req.body;
+    bodyRequest = core.addUserAndDate(action, bodyRequest, dataSession);
+
+    console.log(bodyRequest);
+
+    return bodyRequest;
   };
   /**
    * Function after action
@@ -22,7 +27,28 @@ function user(expressApp) {
    * @param {*} responseData
    */
   const functionAfterAction = function(action, req, responseData) {
-    // TODO
+    let data = expressApp.getDataToken(req);
+    let userService = expressApp.getService("User");
+
+    // If not in list or count necesary admin role
+    if (
+      action != "/list" &&
+      action != "/count" &&
+      !userService.hasAdminRole(data)
+    ) {
+      responseData = {
+        data: null,
+        status: expressApp.mapStatusHttp.BAD_GATEWAY
+      };
+    }
+
+    // Add user create/update if necesary
+    responseData = core.addUserUpdateCreateIfAreNull(
+      expressApp,
+      action,
+      responseData
+    );
+
     return responseData;
   };
 
