@@ -28,8 +28,21 @@ function proyect(paramsDatabase, user) {
     }
   });
 
-  Proyect.belongsTo(user.model, { as: "UserCreate", foreignKey: "userCreateId" });
-  Proyect.belongsTo(user.model, { as: "UserUpdate", foreignKey: "userUpdateId" });
+  Proyect.belongsTo(user.model, {
+    as: "UserCreate",
+    foreignKey: "userCreateId"
+  });
+  Proyect.belongsTo(user.model, {
+    as: "UserUpdate",
+    foreignKey: "userUpdateId"
+  });
+
+  Proyect.loadNew = async function() {
+    const instance = await Proyect.build();
+    instance.dataValues.code = null;
+    instance.dataValues.description = null;
+    return instance;
+  };
 
   let dao = rfnoderest.databaseSequelize.BaseDaoSequelize;
 
