@@ -1,4 +1,12 @@
 const core = require("../core/core");
+const rfnoderest = require("rfnoderest").rfnoderest;
+
+const defaultFetchs = [
+  new rfnoderest.services.Fetch("Proyect", "INNER", null),
+  new rfnoderest.services.Fetch("Tag", "INNER", null),
+  new rfnoderest.services.Fetch("UserCreate", "INNER", null),
+  new rfnoderest.services.Fetch("UserUpdate", "INNER", null)
+];
 
 function note(expressApp) {
   /**
@@ -14,6 +22,9 @@ function note(expressApp) {
 
     if (action == "/add" || action == "/edit") {
       let data = bodyRequest.data;
+
+      data.fetchs = defaultFetchs;
+
       // If has data
       if (data != null && data != undefined) {
         // If has tag add id
@@ -30,6 +41,13 @@ function note(expressApp) {
         }
       }
       bodyRequest.data = data;
+    } else if (action == "/read") {
+      let data = bodyRequest.data;
+
+      // If has data
+      if (data != null && data != undefined) {
+        data.fetchs = defaultFetchs;
+      }
     }
 
     return bodyRequest;
