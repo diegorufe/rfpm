@@ -44,6 +44,22 @@ function note(paramsDatabase, user, proyect, tag) {
     foreignKey: "userUpdateId"
   });
 
+  Note.loadNew = async function() {
+    const instance = await Note.build();
+    instance.dataValues.description = null;
+    instance.dataValues.proyectId = null;
+    instance.dataValues.tagId = null;
+    instance.dataValues.Proyect = { id: null, code: null, description: null };
+    instance.dataValues.Tag = {
+      id: null,
+      code: null,
+      description: null,
+      color: "#fffffff"
+    };
+
+    return instance;
+  };
+
   let dao = rfnoderest.databaseSequelize.BaseDaoSequelize;
 
   return new dao(Note);

@@ -42,6 +42,17 @@ function tag(paramsDatabase, user) {
     foreignKey: "userUpdateId"
   });
 
+  Tag.loadNew = async function() {
+    const instance = await Tag.build();
+    instance.dataValues.code = null;
+    instance.dataValues.description = null;
+    instance.dataValues.color = "#ffffff";
+    instance.dataValues.userCreateId = null;
+    instance.dataValues.userUpdateId = null;
+
+    return instance;
+  };
+
   let dao = rfnoderest.databaseSequelize.BaseDaoSequelize;
 
   return new dao(Tag);
