@@ -9,10 +9,7 @@ function createServices(expressApp, mapDaos) {
     "User",
     require("./commons/user").user(mapDaos["User"])
   );
-  expressApp.addService(
-    "Role",
-    require("./commons/role").rol(mapDaos["Role"])
-  );
+  expressApp.addService("Role", require("./commons/role").rol(mapDaos["Role"]));
   expressApp.addService(
     "UserRole",
     require("./commons/userrole").userrole(mapDaos["UserRole"])
@@ -21,13 +18,14 @@ function createServices(expressApp, mapDaos) {
     "Proyect",
     require("./commons/proyect").proyect(mapDaos["Proyect"])
   );
-  expressApp.addService(
-    "Tag",
-    require("./commons/tag").tag(mapDaos["Tag"])
-  );
+  expressApp.addService("Tag", require("./commons/tag").tag(mapDaos["Tag"]));
   expressApp.addService(
     "Note",
     require("./commons/note").note(mapDaos["Note"])
+  );
+  expressApp.addService(
+    "Wiki",
+    require("./commons/wiki").wiki(mapDaos["Wiki"])
   );
 }
 

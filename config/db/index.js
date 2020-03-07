@@ -46,6 +46,11 @@ async function createDaos(paramsDatabase) {
     MAP_DAOS["Proyect"],
     MAP_DAOS["Tag"]
   );
+  MAP_DAOS["Wiki"] = require("./daos/commons/wiki").dao(
+    paramsDatabase,
+    MAP_DAOS["User"],
+    MAP_DAOS["Proyect"]
+  );
 
   return MAP_DAOS;
 }
