@@ -1,0 +1,116 @@
+<ng-container [ngSwitch]="this.enumStateAccess">
+
+  <!--List-->
+  <ng-container *ngSwitchCase="'list'">
+
+    <rf-page [idPage]="this.id">
+
+      <ng-template rfTemplate="pageContent">
+
+        <rf-toolbarpage>
+
+          <ng-template rfTemplate="toolBarPageContent">
+
+            <rf-toolbarbrowser [baseController]="this">
+            </rf-toolbarbrowser>
+
+          </ng-template>
+
+        </rf-toolbarpage>
+
+
+        <rf-bodypage>
+
+          <ng-template rfTemplate="bodyPageContent">
+
+            <div class="floatLeftFullDiv">
+
+              <rf-card [title]="'rfpm.menu.users' | i18n">
+                <ng-template rfTemplate="cardContent">
+
+                  <rf-table [columns]="this.columns" [baseControllerLazyLoad]="this">
+
+                  </rf-table>
+
+                </ng-template>
+              </rf-card>
+
+            </div>
+
+          </ng-template>
+
+        </rf-bodypage>
+
+      </ng-template>
+
+    </rf-page>
+
+  </ng-container>
+
+  <!--Read/Edit/Add-->
+  <ng-container *ngSwitchDefault>
+
+    <form *ngIf="this.isElementNotNull()" #frm="ngForm" novalidate class="floatLeftFullDiv">
+
+      <rf-page [idPage]="this.id">
+        <ng-template rfTemplate="pageContent">
+
+          <rf-toolbarpage>
+
+            <ng-template rfTemplate="toolBarPageContent">
+
+              <rf-toolbarred [baseController]="this" [form]="frm"></rf-toolbarred>
+
+            </ng-template>
+
+          </rf-toolbarpage>
+
+          <rf-bodypage>
+
+            <ng-template rfTemplate="bodyPageContent">
+
+              <div class="floatLeftFullDiv">
+
+                <rf-card [title]="'rfng.general' | i18n">
+
+                  <ng-template rfTemplate="cardContent">
+
+                    <div class="floatLeftFullDivCard">
+
+                      <rf-inputtext name="{{'nick'+this.id}}" [disabled]="this.isStateRead()" [required]="true"
+                        [model]="this.element" [property]="'nick'" [max]="50" [label]="'Nick'">
+                      </rf-inputtext>
+
+                      <rf-inputpassword name="{{'password'+this.id}}" [disabled]="this.isStateRead()" [required]="false"
+                        [model]="this.element" [property]="'passwordChange'" [max]="50" [label]="'Password'">
+                      </rf-inputpassword>
+
+                    </div>
+
+                  </ng-template>
+
+                </rf-card>
+
+                <!--Show user-roles in read state-->
+                <ng-container *ngIf="this.enumStateAccess === 'read'">
+                  <rfpm-userrole [userId]="this.element.id">
+
+                  </rfpm-userrole>
+
+                </ng-container>
+
+              </div>
+
+            </ng-template>
+
+          </rf-bodypage>
+
+        </ng-template>
+
+      </rf-page>
+
+    </form>
+
+  </ng-container>
+
+</ng-container>

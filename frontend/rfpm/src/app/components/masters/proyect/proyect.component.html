@@ -1,0 +1,111 @@
+<ng-container [ngSwitch]="this.enumStateAccess">
+
+  <!--List-->
+  <ng-container *ngSwitchCase="'list'">
+
+    <rf-page [idPage]="this.id">
+
+      <ng-template rfTemplate="pageContent">
+
+        <rf-toolbarpage>
+
+          <ng-template rfTemplate="toolBarPageContent">
+
+            <rf-toolbarbrowser [baseController]="this" [renderAdd]="this.appService.isAdmin()">
+            </rf-toolbarbrowser>
+
+          </ng-template>
+
+        </rf-toolbarpage>
+
+
+        <rf-bodypage>
+
+          <ng-template rfTemplate="bodyPageContent">
+
+            <div class="floatLeftFullDiv">
+
+              <rf-card [title]="'rfpm.menu.proyects' | i18n">
+                <ng-template rfTemplate="cardContent">
+
+                  <rf-table [columns]="this.columns" [baseControllerLazyLoad]="this"
+                    [renderEdit]="this.appService.isAdmin()" [renderDelete]="this.appService.isAdmin()"
+                    [renderRead]="this.appService.isAdmin()">
+
+                  </rf-table>
+
+                </ng-template>
+              </rf-card>
+
+            </div>
+
+          </ng-template>
+
+        </rf-bodypage>
+
+      </ng-template>
+
+    </rf-page>
+
+  </ng-container>
+
+  <!--Read/Edit/Add-->
+  <ng-container *ngSwitchDefault>
+
+    <form *ngIf="this.isElementNotNull()" #frm="ngForm" novalidate class="floatLeftFullDiv">
+
+      <rf-page [idPage]="this.id">
+        <ng-template rfTemplate="pageContent">
+
+          <rf-toolbarpage>
+
+            <ng-template rfTemplate="toolBarPageContent">
+
+              <rf-toolbarred [baseController]="this" [form]="frm"></rf-toolbarred>
+
+            </ng-template>
+
+          </rf-toolbarpage>
+
+          <rf-bodypage>
+
+            <ng-template rfTemplate="bodyPageContent">
+
+              <div class="floatLeftFullDiv">
+
+                <rf-card [title]="'rfng.general' | i18n">
+
+                  <ng-template rfTemplate="cardContent">
+
+                    <div class="floatLeftFullDivCard">
+
+                      <rf-inputtext name="{{'code'+this.id}}" [disabled]="this.isStateRead()" [required]="true"
+                        [model]="this.element" [property]="'code'" [max]="4" [label]="'rfng.code' | i18n">
+                      </rf-inputtext>
+
+                      <rf-inputtext name="{{'description'+this.id}}" [disabled]="this.isStateRead()" [required]="true"
+                        [model]="this.element" [property]="'description'" [max]="100"
+                        [label]="'rfng.description' | i18n">
+                      </rf-inputtext>
+
+                    </div>
+
+                  </ng-template>
+
+                </rf-card>
+
+              </div>
+
+            </ng-template>
+
+          </rf-bodypage>
+
+        </ng-template>
+
+      </rf-page>
+
+    </form>
+
+  </ng-container>
+
+</ng-container>

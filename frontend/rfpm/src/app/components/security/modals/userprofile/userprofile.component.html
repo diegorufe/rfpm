@@ -1,0 +1,17 @@
+<form #frm="ngForm" novalidate class="FullContainer">
+
+  <div class="UserProfileMessage">
+
+    <rf-inputpassword name="{{'password'+this.id}}" [disabled]="false" [required]="true" [model]="this"
+      [property]="'password'" [max]="50" [label]="'Password'">
+    </rf-inputpassword>
+
+  </div>
+
+  <div class="UserProfileAcctions">
+    <button class="UserProfileButton UserProfileAcctionsAcctionsFirst" (click)="this.actionSave(frm.control)">
+      <i class="far fa-thumbs-up"></i>
+    </button>
+  </div>
+
+</form>

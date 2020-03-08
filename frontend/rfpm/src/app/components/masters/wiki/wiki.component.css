@@ -1,0 +1,11 @@
+.WikiGridLine{
+  float: left;
+}
+
+.WikiGridLineContent{
+  float: left;
+  clear: left;
+  margin-top: 5px;
+  color: var(--rf-tableSumaryFontColor, #466289);
+}
+
