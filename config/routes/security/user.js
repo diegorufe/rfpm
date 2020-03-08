@@ -68,6 +68,52 @@ function user(expressApp) {
     functionAfterAction,
     null
   );
+
+  // Route refresh token
+  expressApp.addPostRoute(
+    "/secure/user/editUserProfile",
+    expressApp.asyncHandler()(async (req, res, next) => {
+      let data = expressApp.getDataToken(req);
+      let bodyRequest = req.body;
+      let userService = expressApp.getService("User");
+
+      if (bodyRequest == null || bodyRequest == undefined) {
+        res.status(expressApp.mapStatusHttp.BAD_GATEWAY);
+        res.json({ data: "", status: 400 });
+      } else {
+        let user = await userService.findOne(
+          [
+            {
+              property: "id",
+              type: "=",
+              value: bodyRequest.data.userId,
+              andOr: "and",
+              alias: null,
+              propertyData: null,
+              other: null
+            }
+          ],
+          null,
+          null
+        );
+
+        if (user == null || user == undefined) {
+          res.status(expressApp.mapStatusHttp.BAD_GATEWAY);
+          res.json({ data: "", status: 400 });
+        } else {
+          user.password = expressApp.bcryptPassword(bodyRequest.data.password);
+          user = await userService.save(user.dataValues, null);
+          if (user == null || user == undefined) {
+            res.status(expressApp.mapStatusHttp.BAD_GATEWAY);
+            res.json({ data: "", status: 400 });
+          } else {
+            res.status(expressApp.mapStatusHttp.ACCESS_SUCCES);
+            res.json({ data: "OK", status: 200 });
+          }
+        }
+      }
+    })
+  );
 }
 
 module.exports = {
