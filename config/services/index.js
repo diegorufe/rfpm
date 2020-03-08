@@ -4,16 +4,21 @@
  * @param {*} mapDaos
  */
 function createServices(expressApp, mapDaos) {
-  // Commons services
+  // Security services
   expressApp.addService(
     "User",
-    require("./commons/user").user(mapDaos["User"])
+    require("./security/user").user(mapDaos["User"])
   );
-  expressApp.addService("Role", require("./commons/role").rol(mapDaos["Role"]));
+  expressApp.addService(
+    "Role",
+    require("./security/role").rol(mapDaos["Role"])
+  );
   expressApp.addService(
     "UserRole",
-    require("./commons/userrole").userrole(mapDaos["UserRole"])
+    require("./security/userrole").userrole(mapDaos["UserRole"])
   );
+
+  // Commons services
   expressApp.addService(
     "Proyect",
     require("./commons/proyect").proyect(mapDaos["Proyect"])

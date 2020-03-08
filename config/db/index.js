@@ -25,9 +25,9 @@ async function createDaos(paramsDatabase) {
   const MAP_DAOS = {};
 
   // Commons
-  MAP_DAOS["User"] = require("./daos/commons/user").dao(paramsDatabase);
-  MAP_DAOS["Role"] = require("./daos/commons/role").dao(paramsDatabase);
-  MAP_DAOS["UserRole"] = require("./daos/commons/userrole").dao(
+  MAP_DAOS["User"] = require("./daos/security/user").dao(paramsDatabase);
+  MAP_DAOS["Role"] = require("./daos/security/role").dao(paramsDatabase);
+  MAP_DAOS["UserRole"] = require("./daos/security/userrole").dao(
     paramsDatabase,
     MAP_DAOS["User"],
     MAP_DAOS["Role"]
