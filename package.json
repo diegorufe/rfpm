@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dvn" : "nodemon ./index.js localhost 8010",
-    "dvnp" : "nodemon ./index.js localhost 9991"
+    "dvn": "nodemon ./index.js localhost 8010",
+    "dvnp": "nodemon ./index.js localhost 9991"
   },
   "keywords": [
     "rfpm"
@@ -15,7 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "mysql2": "^2.1.0",
-    "rfnoderest": "../rfnoderest",
+    "rfnoderest": "./dependencies/rfnoderest-0.0.1.tgz",
     "sequelize": "^5.21.4"
   },
   "devDependencies": {

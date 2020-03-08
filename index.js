@@ -26,6 +26,12 @@
   // Create routes
   require("./config/routes").createRoutes(EXPRESS_APP);
 
+  EXPRESS_APP.app.use(EXPRESS_APP.express.static('./frontend/rfpm/dist/rfpm'));
+
+  EXPRESS_APP.addPostRoute("/", function (req, res) {
+      res.sendFile('./frontend/rfpm/dist/rfpm/index.html');
+  });
+
   // Listen server
   EXPRESS_APP.listen();
 })();
