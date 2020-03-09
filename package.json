@@ -15,7 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "mysql2": "^2.1.0",
-    "rfnoderest": "./dependencies/rfnoderest-0.0.1.tgz",
+    "rfnoderest": "../rfnoderest",
     "sequelize": "^5.21.4"
   },
   "devDependencies": {
