@@ -24,7 +24,6 @@ Component Proyect
                 :renderEdit="this.getExtraData('App').isAdmin()"
                 :renderRead="this.getExtraData('App').isAdmin()"
                 :renderDelete="this.getExtraData('App').isAdmin()"
-                :columns="baseController.columns"
                 :baseControllerLazyLoad="baseController"
               />
             </template>
@@ -34,7 +33,7 @@ Component Proyect
     </template>
   </PageComponent>
   <!-- red -->
-  <PageComponent :idPage="getId()" v-else>
+  <PageComponent :idPage="getId()" v-else-if="baseController.isElementNotNull()">
     <template slot="pageContentTemplate">
       <ToolBarPageComponent>
         <template slot="toolBarPageContentTemplate">
@@ -60,7 +59,6 @@ Component Proyect
                   :element="baseController.element"
                   :property="'description'"
                   :max="100"
-                  :size="100"
                   :label="i18n('rfvue.description')"
                 />
               </div>
