@@ -32,6 +32,12 @@ export default class AppConfig {
           "../components/masters/ProyectViewControllerComponent.vue"
         );
         return module.default;
+      }),
+      Wiki: new LazyImport(async () => {
+        const module = await import(
+          "../components/masters/WikiViewControllerComponent.vue"
+        );
+        return module.default;
       })
     };
     VueContext.addMapLazyImports(mapLazyImports);
@@ -44,6 +50,13 @@ export default class AppConfig {
     mapLazyServices[RFPMConstantsService.SERVICE_PROYECT] = new LazyImport(
       async () => {
         const module = await import("../services/masters/ProyectService.js");
+        let service = module.default;
+        return new service();
+      }
+    );
+    mapLazyServices[RFPMConstantsService.SERVICE_WIKI] = new LazyImport(
+      async () => {
+        const module = await import("../services/masters/WikiService.js");
         let service = module.default;
         return new service();
       }

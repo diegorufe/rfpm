@@ -7,13 +7,21 @@ export default class RFPMConstantsService {
    */
   static BASE_HOST = "http://localhost:3000/rfpm/";
   /**
-   * PAth service proyect
+   * Path service proyect
    */
   static PATH_SERVICE_PROYECT = "/secure/proyect";
+  /**
+   * Path service wiki
+   */
+  static PATH_SERVICE_WIKI = "/secure/wiki";
   /**
    * Service proyect
    */
   static SERVICE_PROYECT = "Proyect";
+  /**
+   * Service proyect
+   */
+  static SERVICE_WIKI = "Wiki";
   /**
    *  service app
    */

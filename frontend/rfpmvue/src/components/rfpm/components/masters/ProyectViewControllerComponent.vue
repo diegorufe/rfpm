@@ -6,7 +6,7 @@ Component Proyect
 
 <template>
   <!-- list -->
-  <PageComponent :idPage="getId()+'List'" v-if="baseController.stateAccess == 'list'">
+  <PageComponent :idPage="getIdList()" v-if="baseController.stateAccess == 'list'">
     <template slot="pageContentTemplate">
       <ToolBarPageComponent>
         <template slot="toolBarPageContentTemplate">
@@ -33,7 +33,7 @@ Component Proyect
     </template>
   </PageComponent>
   <!-- red -->
-  <PageComponent :idPage="getId()" v-else-if="baseController.isElementNotNull()">
+  <PageComponent :idPage="getIdRed()" v-else-if="baseController.isElementNotNull()">
     <template slot="pageContentTemplate">
       <ToolBarPageComponent>
         <template slot="toolBarPageContentTemplate">
@@ -51,6 +51,7 @@ Component Proyect
                   :element="baseController.element"
                   :property="'code'"
                   :max="4"
+                  :tab="this.tab"
                   :label="i18n('rfvue.code')"
                 />
                 <InputTextComponent
@@ -59,6 +60,7 @@ Component Proyect
                   :element="baseController.element"
                   :property="'description'"
                   :max="100"
+                  :tab="this.tab"
                   :label="i18n('rfvue.description')"
                 />
               </div>

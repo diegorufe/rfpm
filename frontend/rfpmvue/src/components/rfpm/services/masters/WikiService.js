@@ -1,13 +1,13 @@
 import BaseCrudService from "../../../rfvue/service/basecrudservice/BaseCrudService";
 import RFPMConstantsService from "../../constants/RFPMConstantsService";
 /**
- * Services for proyects
+ * Services for wiki
  */
-export default class ProyectService extends BaseCrudService {
+export default class WikiService extends BaseCrudService {
   constructor() {
     super(
       RFPMConstantsService.BASE_HOST,
-      RFPMConstantsService.PATH_SERVICE_PROYECT
+      RFPMConstantsService.PATH_SERVICE_WIKI
     );
   }
 }

@@ -25,12 +25,12 @@
     "columns": {
       "proyects": {
         "code": "Code",
-        "description": "Descriptión"
+        "description": "Description"
       },
       "notes": {
         "proyect": "Proyect",
         "tag": "Tag",
-        "description": "Descriptión",
+        "description": "Description",
         "userCreate": "User create",
         "userUpdate": "User update",
         "createdAt": "Created at",
@@ -39,7 +39,7 @@
       "wiki": {
         "proyect": "Proyect",
         "title": "Title",
-        "description": "Descriptión",
+        "description": "Description",
         "userCreate": "User create",
         "userUpdate": "User update",
         "createdAt": "Created at",

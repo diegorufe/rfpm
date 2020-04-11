@@ -16,6 +16,12 @@
               :componentView="'Proyect'"
               :module="'Masters'"
             />
+            <MenuItemComponent
+              :label="i18n('rfpm.menu.wiki')"
+              :level="1"
+              :componentView="'Wiki'"
+              :module="'Masters'"
+            />
           </template>
         </MenuItemComponent>
       </template>

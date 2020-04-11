@@ -1,7 +1,9 @@
 import BaseRedController from "../../../rfvue/beans/BaseRedController";
 import Column from "../../../rfvue/beans/Column";
 import RFPMConstantsService from "../../constants/RFPMConstantsService";
-
+/**
+ * Controller for proyects
+ */
 export default class ProyectController extends BaseRedController {
   constructor(baseViewController) {
     super(baseViewController);
