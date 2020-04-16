@@ -15,6 +15,10 @@ export default class RFPMConstantsService {
    */
   static PATH_SERVICE_WIKI = "/secure/wiki";
   /**
+   * Path service tag
+   */
+  static PATH_SERVICE_TAG = "/secure/tag";
+  /**
    * Service proyect
    */
   static SERVICE_PROYECT = "Proyect";
@@ -22,6 +26,10 @@ export default class RFPMConstantsService {
    * Service proyect
    */
   static SERVICE_WIKI = "Wiki";
+  /**
+   * Service tag
+   */
+  static SERVICE_TAG = "Tag";
   /**
    *  service app
    */

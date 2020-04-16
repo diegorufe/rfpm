@@ -11,9 +11,17 @@
               :module="'Masters'"
             />
             <MenuItemComponent
+              v-if="getExtraData('App').isAdmin()"
               :label="i18n('rfpm.menu.proyects')"
               :level="1"
               :componentView="'Proyect'"
+              :module="'Masters'"
+            />
+            <MenuItemComponent
+              v-if="getExtraData('App').isAdmin()"
+              :label="i18n('rfpm.menu.tags')"
+              :level="1"
+              :componentView="'Tag'"
               :module="'Masters'"
             />
             <MenuItemComponent

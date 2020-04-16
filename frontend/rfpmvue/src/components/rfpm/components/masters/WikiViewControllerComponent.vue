@@ -28,7 +28,7 @@ Component Proyect
                 :label="i18n('rfpm.proyect.title')"
                 :disabledButton="false"
                 :componentView="'Proyect'"
-                :serviceName="'ProyectService'"
+                :service="'Proyect'"
                 :moduleView="'Masters'"
                 :titleSelect="i18n('rfpm.proyect.select')"
                 :property2="'value_description'"
@@ -114,22 +114,65 @@ Component Proyect
           <CardComponent :title="i18n('rfvue.general')">
             <template slot="cardContentTemplate">
               <div class="floatLeftFullDivCard">
-                <!-- <InputTextComponent
+                <InputTextButtonComponent
                   :disabled="baseController.isStateRead()"
                   :required="true"
                   :element="baseController.element"
-                  :property="'code'"
+                  :element2="baseController.element"
+                  :property="'Proyect_code'"
                   :max="4"
-                  :label="i18n('rfvue.code')"
+                  :label="i18n('rfpm.proyect.title')"
+                  :disabledButton="baseController.isStateRead()"
+                  :componentView="'Proyect'"
+                  :service="'Proyect'"
+                  :moduleView="'Masters'"
+                  :titleSelect="i18n('rfpm.proyect.select')"
+                  :property2="'Proyect_description'"
+                  :tab="tab"
+                  :max2="100"
                 />
-                <InputTextComponent
-                  :disabled="baseController.isStateRead()"
-                  :required="true"
-                  :element="baseController.element"
-                  :property="'description'"
-                  :max="100"
-                  :label="i18n('rfvue.description')"
-                />-->
+                <div style="float: left; clear: left;">
+                  <InputTextComponent
+                    :disabled="true"
+                    :rendered="baseController.isStateRead()"
+                    :required="false"
+                    :element="baseController.element"
+                    :property="'UserCreate_nick'"
+                    :max="30"
+                    :label="i18n('rfpm.columns.notes.userCreate')"
+                  />
+                  <InputTextComponent
+                    :disabled="true"
+                    :rendered="baseController.isStateRead()"
+                    :required="false"
+                    :element="baseController.element"
+                    :property="'UserUpdate_nick'"
+                    :max="30"
+                    :label="i18n('rfpm.columns.notes.userUpdate')"
+                  />
+                </div>
+                <div style="float: left; clear: left;">
+                  <InputTextAreaComponent
+                    :disabled="baseController.isStateRead()"
+                    :required="true"
+                    :element="baseController.element"
+                    :property="'title'"
+                    :cols="200"
+                    :rows="10"
+                    :tab="tab"
+                    :label="i18n('rfvue.title')"
+                  />
+                  <InputTextAreaComponent
+                    :disabled="baseController.isStateRead()"
+                    :required="true"
+                    :element="baseController.element"
+                    :property="'description'"
+                    :cols="200"
+                    :rows="20"
+                    :tab="tab"
+                    :label="i18n('rfvue.description')"
+                  />
+                </div>
               </div>
             </template>
           </CardComponent>
@@ -151,6 +194,7 @@ import WikiController from "../../controllers/masters/WikiController";
 import ToolBarRedComponent from "../../../rfvue/components/toolbars/ToolBarRedComponent";
 import InputTextComponent from "../../../rfvue/components/inputtext/InputTextComponent";
 import InputTextButtonComponent from "../../../rfvue/components/inputtextbutton/InputTextButtonComponent";
+import InputTextAreaComponent from "../../../rfvue/components/inputtextarea/InputTextAreaComponent";
 
 export default {
   extends: BaseViewControllerComponent,
@@ -164,7 +208,8 @@ export default {
     TableComponent,
     ToolBarRedComponent,
     InputTextComponent,
-    InputTextButtonComponent
+    InputTextButtonComponent,
+    InputTextAreaComponent
   },
   data() {
     return {

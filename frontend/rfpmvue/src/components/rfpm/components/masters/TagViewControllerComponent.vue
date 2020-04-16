@@ -1,6 +1,6 @@
 <!--
 
-Component Proyect 
+Component Tag 
 
 -->
 
@@ -18,7 +18,7 @@ Component Proyect
       </ToolBarPageComponent>
       <BodyPageComponent>
         <template slot="bodyPageContentTemplate">
-          <CardComponent :title="i18n('rfpm.menu.proyects')">
+          <CardComponent :title="i18n('rfpm.menu.tags')">
             <template slot="cardContentTemplate">
               <TableComponent
                 :renderEdit="getExtraData('App').isAdmin()"
@@ -42,7 +42,7 @@ Component Proyect
       </ToolBarPageComponent>
       <BodyPageComponent>
         <template slot="bodyPageContentTemplate">
-          <CardComponent :title="i18n('rfvue.general')">
+          <CardComponent :title="i18n('rfvue.general')" :styleBody="baseController.styleCard()">
             <template slot="cardContentTemplate">
               <div class="floatLeftFullDivCard">
                 <InputTextComponent
@@ -63,6 +63,14 @@ Component Proyect
                   :tab="tab"
                   :label="i18n('rfvue.description')"
                 />
+                <InputColorComponent
+                  :disabled="baseController.isStateRead()"
+                  :element="baseController.element"
+                  :property="'color'"
+                  :max="100"
+                  :tab="tab"
+                  :label="i18n('rfvue.color')"
+                />
               </div>
             </template>
           </CardComponent>
@@ -80,9 +88,10 @@ import ToolBarBrowserComponent from "../../../rfvue/components/toolbars/ToolBarB
 import BodyPageComponent from "../../../rfvue/components/bodypage/BodyPageComponent";
 import CardComponent from "../../../rfvue/components/card/CardComponent";
 import TableComponent from "../../../rfvue/components/table/TableComponent";
-import ProyectController from "../../controllers/masters/ProyectController";
+import TagController from "../../controllers/masters/TagController";
 import ToolBarRedComponent from "../../../rfvue/components/toolbars/ToolBarRedComponent";
 import InputTextComponent from "../../../rfvue/components/inputtext/InputTextComponent";
+import InputColorComponent from "../../../rfvue/components/inputcolor/InputColorComponent";
 
 export default {
   extends: BaseViewControllerComponent,
@@ -95,11 +104,12 @@ export default {
     CardComponent,
     TableComponent,
     ToolBarRedComponent,
-    InputTextComponent
+    InputTextComponent,
+    InputColorComponent
   },
   data() {
     return {
-      baseController: new ProyectController(this)
+      baseController: new TagController(this)
     };
   }
 };

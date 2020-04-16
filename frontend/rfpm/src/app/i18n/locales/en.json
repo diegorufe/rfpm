@@ -25,7 +25,7 @@
     "columns": {
       "proyects": {
         "code": "Code",
-        "description": "Descriptión"
+        "description": "Description"
       },
       "notes": {
         "proyect": "Proyect",
