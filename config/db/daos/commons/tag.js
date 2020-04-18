@@ -7,42 +7,42 @@ function tag(paramsDatabase, user) {
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     code: {
       type: Sequelize.STRING,
       notNull: true,
-      unique: true
+      unique: true,
     },
     description: {
       type: Sequelize.STRING,
-      notNull: true
+      notNull: true,
     },
     color: {
       type: Sequelize.STRING,
-      notNull: true
+      notNull: true,
     },
     userCreateId: {
       type: Sequelize.INTEGER,
-      notNull: true
+      notNull: true,
     },
     userUpdateId: {
       type: Sequelize.INTEGER,
-      notNull: true
-    }
+      notNull: true,
+    },
   });
 
   Tag.belongsTo(user.model, {
     as: "UserCreate",
-    foreignKey: "userCreateId"
+    foreignKey: "userCreateId",
   });
 
   Tag.belongsTo(user.model, {
     as: "UserUpdate",
-    foreignKey: "userUpdateId"
+    foreignKey: "userUpdateId",
   });
 
-  Tag.loadNew = async function() {
+  Tag.loadNew = async function () {
     const instance = await Tag.build();
     instance.dataValues.code = null;
     instance.dataValues.description = null;
@@ -55,9 +55,9 @@ function tag(paramsDatabase, user) {
 
   let dao = rfnoderest.databaseSequelize.BaseDaoSequelize;
 
-  return new dao(Tag);
+  return new dao(paramsDatabase, Tag);
 }
 
 module.exports = {
-  dao: tag
+  dao: tag,
 };
