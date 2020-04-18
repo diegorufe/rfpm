@@ -1,6 +1,6 @@
 <!--
 
-Component Wiki 
+Component Note 
 
 -->
 
@@ -35,14 +35,22 @@ Component Wiki
                 :tab="this.tab"
                 :max2="100"
               />
-              <InputTextComponent
+              <InputTextButtonComponent
                 :disabled="false"
                 :required="false"
                 :element="baseController.filtersBrowser[1]"
-                :property="'value'"
-                :max="30"
+                :element2="baseController.filtersBrowser[1]"
+                :property="'value_code'"
+                :max="4"
+                :label="i18n('rfpm.tag.title')"
+                :disabledButton="false"
+                :componentView="'Tag'"
+                :service="'Tag'"
+                :moduleView="'Masters'"
+                :titleSelect="i18n('rfpm.tag.select')"
+                :property2="'value_description'"
                 :tab="this.tab"
-                :label="i18n('rfvue.title')"
+                :max2="100"
               />
               <InputTextComponent
                 :disabled="false"
@@ -56,40 +64,36 @@ Component Wiki
             </template>
           </CardComponent>
           <!-- Table -->
-          <CardComponent :title="i18n('rfpm.menu.wiki')">
+          <CardComponent :title="i18n('rfpm.menu.notes')">
             <template slot="cardContentTemplate">
               <TableComponent
                 :baseControllerLazyLoad="baseController"
                 :typeView="baseController.tableView"
               >
                 <template slot="tableGridLineTemplate" slot-scope="slotProps">
-                  <div class="WikiGridLine">
+                  <div class="NoteGridLine">
                     <div
-                      class="WikiGridLineContent"
+                      class="NoteGridLineContent"
                     >{{i18n('rfpm.proyect.title')+': '+ slotProps.rowData['Proyect']['description']}}</div>
 
                     <div
-                      class="WikiGridLineContent"
+                      class="NoteGridLineContent"
                     >{{i18n('rfpm.columns.notes.userCreate')+': '+ slotProps.rowData['UserCreate']['nick']}}</div>
 
                     <div
-                      class="WikiGridLineContent"
+                      class="NoteGridLineContent"
                     >{{i18n('rfpm.columns.notes.userUpdate')+': '+ slotProps.rowData['UserUpdate']['nick']}}</div>
 
                     <div
-                      class="WikiGridLineContent"
+                      class="NoteGridLineContent"
                     >{{i18n('rfpm.columns.notes.createdAt')+': '+ slotProps.rowData['createdAt']}}</div>
 
                     <div
-                      class="WikiGridLineContent"
+                      class="NoteGridLineContent"
                     >{{i18n('rfpm.columns.notes.updatedAt')+': '+ slotProps.rowData['updatedAt']}}</div>
 
                     <div
-                      class="WikiGridLineContent"
-                    >{{i18n('rfvue.title')+': '+ slotProps.rowData['title']}}</div>
-
-                    <div
-                      class="WikiGridLineContent"
+                      class="NoteGridLineContent"
                     >{{i18n('rfvue.description')+': '+ slotProps.rowData['description']}}</div>
                   </div>
                 </template>
@@ -111,7 +115,7 @@ Component Wiki
       </ToolBarPageComponent>
       <BodyPageComponent>
         <template slot="bodyPageContentTemplate">
-          <CardComponent :title="i18n('rfvue.general')">
+          <CardComponent :title="i18n('rfvue.general')" :styleBody="baseController.styleCard()">
             <template slot="cardContentTemplate">
               <div class="floatLeftFullDivCard">
                 <InputTextButtonComponent
@@ -128,6 +132,23 @@ Component Wiki
                   :moduleView="'Masters'"
                   :titleSelect="i18n('rfpm.proyect.select')"
                   :property2="'Proyect_description'"
+                  :tab="tab"
+                  :max2="100"
+                />
+                <InputTextButtonComponent
+                  :disabled="baseController.isStateRead()"
+                  :required="true"
+                  :element="baseController.element"
+                  :element2="baseController.element"
+                  :property="'Tag_code'"
+                  :max="4"
+                  :label="i18n('rfpm.tag.title')"
+                  :disabledButton="baseController.isStateRead()"
+                  :componentView="'Tag'"
+                  :service="'Tag'"
+                  :moduleView="'Masters'"
+                  :titleSelect="i18n('rfpm.tag.select')"
+                  :property2="'Tag_description'"
                   :tab="tab"
                   :max2="100"
                 />
@@ -156,19 +177,9 @@ Component Wiki
                     :disabled="baseController.isStateRead()"
                     :required="true"
                     :element="baseController.element"
-                    :property="'title'"
-                    :cols="200"
-                    :rows="10"
-                    :tab="tab"
-                    :label="i18n('rfvue.title')"
-                  />
-                  <InputTextAreaComponent
-                    :disabled="baseController.isStateRead()"
-                    :required="true"
-                    :element="baseController.element"
                     :property="'description'"
                     :cols="200"
-                    :rows="20"
+                    :rows="35"
                     :tab="tab"
                     :label="i18n('rfvue.description')"
                   />
@@ -190,7 +201,7 @@ import ToolBarBrowserComponent from "../../../rfvue/components/toolbars/ToolBarB
 import BodyPageComponent from "../../../rfvue/components/bodypage/BodyPageComponent";
 import CardComponent from "../../../rfvue/components/card/CardComponent";
 import TableComponent from "../../../rfvue/components/table/TableComponent";
-import WikiController from "../../controllers/masters/WikiController";
+import NoteController from "../../controllers/masters/NoteController";
 import ToolBarRedComponent from "../../../rfvue/components/toolbars/ToolBarRedComponent";
 import InputTextComponent from "../../../rfvue/components/inputtext/InputTextComponent";
 import InputTextButtonComponent from "../../../rfvue/components/inputtextbutton/InputTextButtonComponent";
@@ -198,7 +209,7 @@ import InputTextAreaComponent from "../../../rfvue/components/inputtextarea/Inpu
 
 export default {
   extends: BaseViewControllerComponent,
-  name: "WikiViewControllerComponent",
+  name: "NoteViewControllerComponent",
   components: {
     PageComponent,
     ToolBarPageComponent,
@@ -213,18 +224,18 @@ export default {
   },
   data() {
     return {
-      baseController: new WikiController(this)
+      baseController: new NoteController(this)
     };
   }
 };
 </script>
 
 <style scoped>
-.WikiGridLine {
+.NoteGridLine {
   float: left;
 }
 
-.WikiGridLineContent {
+.NoteGridLineContent {
   float: left;
   clear: left;
   margin-top: 5px;

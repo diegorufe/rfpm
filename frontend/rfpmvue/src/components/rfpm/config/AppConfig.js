@@ -44,7 +44,19 @@ export default class AppConfig {
           "../components/masters/TagViewControllerComponent.vue"
         );
         return module.default;
-      })
+      }),
+      Note: new LazyImport(async () => {
+        const module = await import(
+          "../components/masters/NoteViewControllerComponent.vue"
+        );
+        return module.default;
+      }),
+      Role: new LazyImport(async () => {
+        const module = await import(
+          "../components/security/RoleViewControllerComponent.vue"
+        );
+        return module.default;
+      }),
     };
     VueContext.addMapLazyImports(mapLazyImports);
   }
@@ -70,6 +82,20 @@ export default class AppConfig {
     mapLazyServices[RFPMConstantsService.SERVICE_TAG] = new LazyImport(
       async () => {
         const module = await import("../services/masters/TagService.js");
+        let service = module.default;
+        return new service();
+      }
+    );
+    mapLazyServices[RFPMConstantsService.SERVICE_NOTE] = new LazyImport(
+      async () => {
+        const module = await import("../services/masters/NoteService.js");
+        let service = module.default;
+        return new service();
+      }
+    );
+    mapLazyServices[RFPMConstantsService.SERVICE_ROLE] = new LazyImport(
+      async () => {
+        const module = await import("../services/security/RoleService.js");
         let service = module.default;
         return new service();
       }

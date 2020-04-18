@@ -7,7 +7,7 @@
             <MenuItemComponent
               :label="i18n('rfpm.menu.notes')"
               :level="1"
-              :componentView="'NoteComponent'"
+              :componentView="'Note'"
               :module="'Masters'"
             />
             <MenuItemComponent
@@ -28,6 +28,17 @@
               :label="i18n('rfpm.menu.wiki')"
               :level="1"
               :componentView="'Wiki'"
+              :module="'Masters'"
+            />
+          </template>
+        </MenuItemComponent>
+        <MenuItemComponent :label="i18n('rfpm.menu.security')" v-if="getExtraData('App').isAdmin()">
+          <template slot="menuItemContentTemplate">
+            <MenuItemComponent
+               v-if="getExtraData('App').isAdmin()"
+              :label="i18n('rfpm.menu.roles')"
+              :level="1"
+              :componentView="'Role'"
               :module="'Masters'"
             />
           </template>

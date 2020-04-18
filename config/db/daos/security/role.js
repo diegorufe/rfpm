@@ -9,24 +9,24 @@ function role(paramsDatabase) {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
       },
       name: {
         type: Sequelize.STRING,
         notNull: true,
-        unique: true
-      }
+        unique: true,
+      },
     },
     {
-      timestamps: false
+      timestamps: false,
     }
   );
 
   let dao = rfnoderest.databaseSequelize.BaseDaoSequelize;
 
-  return new dao(Role);
+  return new dao(paramsDatabase, Role);
 }
 
 module.exports = {
-  dao: role
+  dao: role,
 };
