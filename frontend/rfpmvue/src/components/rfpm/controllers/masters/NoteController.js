@@ -59,6 +59,11 @@ export default class NoteController extends BaseRedController {
     this.filtersBrowser.push(
       new Filter("description", "like_all", null, "and", null)
     );
+
+    const filterHashTag = new Filter("hashtags", "=", null, "and", null);
+    filterHashTag.hashtagFilter = true;
+
+    this.filtersBrowser.push(filterHashTag);
   }
 
   loadColumns() {

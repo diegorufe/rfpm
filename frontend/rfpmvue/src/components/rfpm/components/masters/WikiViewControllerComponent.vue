@@ -53,6 +53,14 @@ Component Wiki
                 :tab="this.tab"
                 :label="i18n('rfvue.description')"
               />
+              <div style="float:left; clear:left;">
+                <HashTagComponent
+                  :disabled="false"
+                  :element="baseController.filtersBrowser[3]"
+                  :property="'value'"
+                  :label="i18n('rfvue.hashtag.titlePlural')"
+                />
+              </div>
             </template>
           </CardComponent>
           <!-- Table -->
@@ -152,6 +160,15 @@ Component Wiki
                   />
                 </div>
                 <div style="float: left; clear: left;">
+                  <HashTagComponent
+                    :disabled="baseController.isStateRead()"
+                    :rendered="baseController.isStateRead()"
+                    :element="baseController.element"
+                    :property="'hashtags'"
+                    :label="i18n('rfvue.hashtag.titlePlural')"
+                  />
+                </div>
+                <div style="float: left; clear: left;">
                   <InputTextAreaComponent
                     :disabled="baseController.isStateRead()"
                     :required="true"
@@ -195,6 +212,7 @@ import ToolBarRedComponent from "../../../rfvue/components/toolbars/ToolBarRedCo
 import InputTextComponent from "../../../rfvue/components/inputtext/InputTextComponent";
 import InputTextButtonComponent from "../../../rfvue/components/inputtextbutton/InputTextButtonComponent";
 import InputTextAreaComponent from "../../../rfvue/components/inputtextarea/InputTextAreaComponent";
+import HashTagComponent from "../../../rfvue/components/hashtag/HashTagComponent";
 
 export default {
   extends: BaseViewControllerComponent,
@@ -209,7 +227,8 @@ export default {
     ToolBarRedComponent,
     InputTextComponent,
     InputTextButtonComponent,
-    InputTextAreaComponent
+    InputTextAreaComponent,
+    HashTagComponent
   },
   data() {
     return {

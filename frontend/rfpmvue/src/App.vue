@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <RFPMAppComponent>
-      <template slot="menuContentTemplate">
-        <MenuItemComponent :label="i18n('rfpm.menu.masters')">
+      <template slot="menuContentTemplate" slot-scope="slotProps">
+        <MenuItemComponent v-if="slotProps.app.logged" :label="i18n('rfpm.menu.masters')">
           <template slot="menuItemContentTemplate">
             <MenuItemComponent
               :label="i18n('rfpm.menu.notes')"
@@ -35,7 +35,7 @@
         <MenuItemComponent :label="i18n('rfpm.menu.security')" v-if="getExtraData('App').isAdmin()">
           <template slot="menuItemContentTemplate">
             <MenuItemComponent
-               v-if="getExtraData('App').isAdmin()"
+              v-if="getExtraData('App').isAdmin()"
               :label="i18n('rfpm.menu.roles')"
               :level="1"
               :componentView="'Role'"

@@ -29,6 +29,10 @@ function note(paramsDatabase, user, proyect, tag) {
       type: Sequelize.INTEGER,
       notNull: true,
     },
+    hashtags: {
+      type: Sequelize.STRING,
+      notNull: false,
+    },
   });
 
   Note.belongsTo(proyect.model, { as: "Proyect", foreignKey: "proyectId" });
@@ -56,6 +60,7 @@ function note(paramsDatabase, user, proyect, tag) {
       description: null,
       color: "#fffffff",
     };
+    instance.dataValues.hashtags = null;
 
     return instance;
   };

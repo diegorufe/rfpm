@@ -57,6 +57,12 @@ export default class AppConfig {
         );
         return module.default;
       }),
+      User: new LazyImport(async () => {
+        const module = await import(
+          "../components/security/UserViewControllerComponent.vue"
+        );
+        return module.default;
+      }),
     };
     VueContext.addMapLazyImports(mapLazyImports);
   }
@@ -96,6 +102,13 @@ export default class AppConfig {
     mapLazyServices[RFPMConstantsService.SERVICE_ROLE] = new LazyImport(
       async () => {
         const module = await import("../services/security/RoleService.js");
+        let service = module.default;
+        return new service();
+      }
+    );
+    mapLazyServices[RFPMConstantsService.SERVICE_USER] = new LazyImport(
+      async () => {
+        const module = await import("../services/security/UserService.js");
         let service = module.default;
         return new service();
       }

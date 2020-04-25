@@ -29,6 +29,10 @@ function wiki(paramsDatabase, user, proyect) {
       type: Sequelize.INTEGER,
       notNull: true,
     },
+    hashtags: {
+      type: Sequelize.STRING,
+      notNull: false,
+    },
   });
 
   Wiki.belongsTo(proyect.model, { as: "Proyect", foreignKey: "proyectId" });
@@ -49,6 +53,7 @@ function wiki(paramsDatabase, user, proyect) {
     instance.dataValues.description = null;
     instance.dataValues.proyectId = null;
     instance.dataValues.Proyect = { id: null, code: null, description: null };
+    instance.dataValues.hashtags = null;
 
     return instance;
   };
