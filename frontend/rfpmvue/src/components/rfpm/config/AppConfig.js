@@ -7,6 +7,8 @@ import AppService from "./../services/app/AppService";
  * Class for config app
  */
 export default class AppConfig {
+  static IS_ELECTRON_APP = true;
+
   /**
    * Load map extra data
    */
@@ -119,6 +121,9 @@ export default class AppConfig {
    * Config app
    */
   static configApp() {
+    // Set is elecotrn app or not
+    VueContext.setElectronApp(AppConfig.IS_ELECTRON_APP);
+
     AppConfig.configI18n();
     AppConfig.loadComponents();
     AppConfig.loadServices();
