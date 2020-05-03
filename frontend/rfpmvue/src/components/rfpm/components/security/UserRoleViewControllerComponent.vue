@@ -1,6 +1,6 @@
 <!--
 
-Component Role 
+Component User role
 
 -->
 
@@ -12,10 +12,21 @@ Component Role
         <template slot="toolBarPageContentTemplate">
           <ToolBarBrowserComponent
             :baseController="baseController"
-            :renderAdd="false"
             :renderApplyFilters="false"
             :renderResetFilters="false"
-          />
+            :renderAdd="false"
+          >
+            <template slot="afterContentTemplate">
+              <button
+                class="ToolBarButtonsDefault"
+                v-on:click="baseController.prepareAddRole()"
+                type="button"
+              >
+                <ToolTipComponent :value="i18n('rfvue.toolbar.goAdd')" />
+                <i class="fas fa-plus"></i>
+              </button>
+            </template>
+          </ToolBarBrowserComponent>
         </template>
       </ToolBarPageComponent>
       <BodyPageComponent>
@@ -23,12 +34,10 @@ Component Role
           <CardComponent :title="i18n('rfpm.menu.roles')">
             <template slot="cardContentTemplate">
               <TableComponent
-                :hasActions="isModal()"
                 :renderEdit="false"
                 :renderRead="false"
-                :renderDelete="false"
+                :renderDelete="true"
                 :baseControllerLazyLoad="baseController"
-                :disableClickRowDblActions="true"
               />
             </template>
           </CardComponent>
@@ -46,22 +55,39 @@ import ToolBarBrowserComponent from "../../../rfvue/components/toolbars/ToolBarB
 import BodyPageComponent from "../../../rfvue/components/bodypage/BodyPageComponent";
 import CardComponent from "../../../rfvue/components/card/CardComponent";
 import TableComponent from "../../../rfvue/components/table/TableComponent";
-import RoleController from "../../controllers/security/RoleController";
+import ToolTipComponent from "../../../rfvue/components/tooltip/ToolTipComponent";
+import UserRoleController from "../../controllers/security/UserRoleController";
 
 export default {
   extends: BaseViewControllerComponent,
-  name: "RoleViewControllerComponent",
+  name: "UserRoleViewControllerComponent",
   components: {
     PageComponent,
     ToolBarPageComponent,
     ToolBarBrowserComponent,
     BodyPageComponent,
     CardComponent,
-    TableComponent
+    TableComponent,
+    ToolTipComponent
+  },
+  props: {
+    userId: {
+      type: Number,
+      default: -999
+    }
+  },
+  watch: {
+    userId: function(newVal) {
+      // watch it
+      // console.log("Prop changed: ", newVal, " | was: ", oldVal);
+      // Reload user props
+      this.baseController.reloadUser();
+      return newVal;
+    }
   },
   data() {
     return {
-      baseController: new RoleController(this)
+      baseController: new UserRoleController(this)
     };
   }
 };

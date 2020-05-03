@@ -68,8 +68,8 @@ Component User
           </CardComponent>
 
           <!--Show user-roles in read state-->
-          <div style="float:left;" v-if="baseController.stateAccess == 'read'">
-
+          <div style="float:left;width: 100%;" v-if="baseController.stateAccess == 'read'">
+            <UserRoleViewControllerComponent :userId="baseController.element.id" />
           </div>
 
         </template>
@@ -86,10 +86,11 @@ import ToolBarBrowserComponent from "../../../rfvue/components/toolbars/ToolBarB
 import BodyPageComponent from "../../../rfvue/components/bodypage/BodyPageComponent";
 import CardComponent from "../../../rfvue/components/card/CardComponent";
 import TableComponent from "../../../rfvue/components/table/TableComponent";
-import ProyectController from "../../controllers/masters/ProyectController";
+import UserController from "../../controllers/security/UserController";
 import ToolBarRedComponent from "../../../rfvue/components/toolbars/ToolBarRedComponent";
 import InputTextComponent from "../../../rfvue/components/inputtext/InputTextComponent";
 import InputPasswordComponent from "../../../rfvue/components/inputpassword/InputPasswordComponent";
+import UserRoleViewControllerComponent from "./UserRoleViewControllerComponent";
 
 export default {
   extends: BaseViewControllerComponent,
@@ -103,11 +104,12 @@ export default {
     TableComponent,
     ToolBarRedComponent,
     InputTextComponent,
-    InputPasswordComponent
+    InputPasswordComponent,
+    UserRoleViewControllerComponent
   },
   data() {
     return {
-      baseController: new ProyectController(this)
+      baseController: new UserController(this)
     };
   }
 };

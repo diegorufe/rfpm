@@ -31,6 +31,10 @@ export default class RFPMConstantsService {
    */
   static PATH_SERVICE_USER = "/secure/user";
   /**
+   * Path service user role
+   */
+  static PATH_SERVICE_USER_ROLE = "/secure/userrole";
+  /**
    * Service proyect
    */
   static SERVICE_PROYECT = "Proyect";
@@ -58,4 +62,9 @@ export default class RFPMConstantsService {
    *  service user
    */
   static SERVICE_USER = "User";
+
+   /**
+   *  service user role
+   */
+  static SERVICE_USER_ROLE = "UserRole";
 }

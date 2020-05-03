@@ -9,11 +9,18 @@ export default class UserController extends BaseRedController {
     super(baseViewController);
   }
 
+  /**
+   * Method for get user id
+   */
+  getUserId() {
+    return this.element.id;
+  }
+
   getServiceName() {
     return RFPMConstantsService.SERVICE_USER;
   }
 
   loadColumns() {
-    this.columns.push(new Column('nick', 'Nick', 300, true));
+    this.columns.push(new Column("nick", "Nick", 300, true));
   }
 }

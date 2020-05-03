@@ -7,7 +7,10 @@ import AppService from "./../services/app/AppService";
  * Class for config app
  */
 export default class AppConfig {
-  static IS_ELECTRON_APP = true;
+  /**
+   * Indicate is electron app
+   */
+  static IS_ELECTRON_APP = false;
 
   /**
    * Load map extra data
@@ -65,6 +68,12 @@ export default class AppConfig {
         );
         return module.default;
       }),
+      UserRole: new LazyImport(async () => {
+        const module = await import(
+          "../components/security/UserRoleViewControllerComponent.vue"
+        );
+        return module.default;
+      }),
     };
     VueContext.addMapLazyImports(mapLazyImports);
   }
@@ -111,6 +120,13 @@ export default class AppConfig {
     mapLazyServices[RFPMConstantsService.SERVICE_USER] = new LazyImport(
       async () => {
         const module = await import("../services/security/UserService.js");
+        let service = module.default;
+        return new service();
+      }
+    );
+    mapLazyServices[RFPMConstantsService.SERVICE_USER_ROLE] = new LazyImport(
+      async () => {
+        const module = await import("../services/security/UserRoleService.js");
         let service = module.default;
         return new service();
       }

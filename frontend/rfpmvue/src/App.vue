@@ -41,6 +41,13 @@
               :componentView="'Role'"
               :module="'Masters'"
             />
+            <MenuItemComponent
+              v-if="getExtraData('App').isAdmin()"
+              :label="i18n('rfpm.menu.users')"
+              :level="1"
+              :componentView="'User'"
+              :module="'Masters'"
+            />
           </template>
         </MenuItemComponent>
       </template>
