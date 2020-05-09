@@ -74,6 +74,12 @@ export default class AppConfig {
         );
         return module.default;
       }),
+      UserProfile: new LazyImport(async () => {
+        const module = await import(
+          "../components/security/UserProfileViewComponent.vue"
+        );
+        return module.default;
+      }),
     };
     VueContext.addMapLazyImports(mapLazyImports);
   }

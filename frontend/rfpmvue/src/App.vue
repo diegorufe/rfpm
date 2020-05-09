@@ -1,6 +1,17 @@
 <template>
   <div id="app">
     <RFPMAppComponent>
+      <!-- Header -->
+      <template slot="headerLeftTemplate">
+        <div class="RfpmTitle">{{"RFPM"}}</div>
+      </template>
+      <template slot="headerBodyTemplate" slot-scope="slotProps">
+        <div class="RfpmUser">
+          {{i18n('rfvue.user')}}:
+          <a v-on:click="clickUser()">{{slotProps.app.nickUser}}</a>
+        </div>
+      </template>
+      <!-- Menu -->
       <template slot="menuContentTemplate" slot-scope="slotProps">
         <MenuItemComponent v-if="slotProps.app.logged" :label="i18n('rfpm.menu.masters')">
           <template slot="menuItemContentTemplate">
@@ -59,6 +70,7 @@
 import RFPMAppComponent from "./components/rfpm/components/RFPMAppComponent";
 import MenuItemComponent from "./components/rfvue/components/menuitem/MenuItemComponent";
 import BaseComponent from "./components/rfvue/components/base/BaseComponent";
+import ConstantsModals from "./components/rfvue/constants/ConstantsModals";
 
 export default {
   extends: BaseComponent,
@@ -66,6 +78,55 @@ export default {
   components: {
     RFPMAppComponent,
     MenuItemComponent
+  },
+  methods: {
+    /**
+     * Methoc execuete click user profile open modal modify this
+     */
+    clickUser: async function() {
+      const params = {};
+      params[ConstantsModals.KEY_MODAL_COMPONENT_PARAM_STYLE_CLASS_MODAL] =
+        "UserProfileModal";
+
+      let self = this;
+
+      self.getVueContext().applyAsyncFunctionWithHandlerViewError(() => {
+        return self
+          .getVueContext()
+          .addModal(
+            self.i18n("rfpm.userProfile.title"),
+            "UserProfile",
+            "Security",
+            false,
+            params
+          );
+      });
+    }
   }
 };
 </script>
+
+<style scoped>
+.RfpmTitle {
+  float: left;
+  font-size: 24px;
+  margin-top: 10px;
+  margin-left: 5px;
+  color: white;
+  font-weight: bold;
+  font-family: initial;
+}
+
+.RfpmUser {
+  float: right;
+  color: white;
+  font-size: 16px;
+  margin-right: 20px;
+  margin-top: 13px;
+}
+
+.RfpmUser > a {
+  cursor: pointer;
+  text-decoration: underline;
+}
+</style>

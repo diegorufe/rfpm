@@ -19,7 +19,18 @@ export default {
     /**
      * Method for load configuration for app
      */
-    loadConfigApp: function() {}
+    loadConfigApp: function() {},
+    /**
+     * Method for load data post loggin
+     */
+    loadPostLogin: function() {
+      this.nickUser = this.getExtraData("App").getNickUser();
+    }
+  },
+  data() {
+    return {
+      nickUser:  this.getExtraData("App").getNickUser()
+    };
   }
 };
 </script>
