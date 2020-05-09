@@ -1,7 +1,0 @@
-/* You can add global styles to this file, and also import other style files */
-.UserProfileModal {
-  width: 418px;
-  max-height: 300px !important;
-  top: calc(50% - 250px) !important;
-  left: calc(50% - 250px) !important;
-}

@@ -1,11 +1,11 @@
 /**
  * Indicate is electron app
  */
-const IS_ELECTRONA_APP = false;
+const IS_ELECTRONA_APP = true;
 /**
  * Indicate is dev operation
  */
-const IS_DEV = true;
+const IS_DEV = false;
 
 if (!IS_ELECTRONA_APP) {
   require("./createExpressApp")(IS_ELECTRONA_APP);

@@ -10,7 +10,7 @@ export default class AppConfig {
   /**
    * Indicate is electron app
    */
-  static IS_ELECTRON_APP = false;
+  static IS_ELECTRON_APP = true;
 
   /**
    * Load map extra data

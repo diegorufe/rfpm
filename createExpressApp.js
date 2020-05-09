@@ -33,10 +33,10 @@ async function createExpressApp(isElectronApp) {
   require("./config/routes").createRoutes(EXPRESS_APP);
 
   if (!isElectronApp) {
-    EXPRESS_APP.app.use(EXPRESS_APP.express.static("./frontend/rfpm/front"));
+    EXPRESS_APP.app.use(EXPRESS_APP.express.static("./frontend/distRest/dist"));
 
     EXPRESS_APP.addPostRoute("/", function (req, res) {
-      res.sendFile("./frontend/rfpm/front/index.html");
+      res.sendFile("./frontend/distRest/dist/index.html");
     });
 
     // Listen server
