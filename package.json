@@ -1,6 +1,6 @@
 {
   "name": "rfpm",
-  "version": "0.0.1",
+  "version": "0.0.3b",
   "description": "Proyect manager",
   "main": "index.js",
   "scripts": {
