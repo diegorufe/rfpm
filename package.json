@@ -6,7 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dvn": "nodemon ./index.js localhost 8010",
-    "dvnp": "nodemon ./index.js localhost 9991"
+    "dvnp": "nodemon ./index.js localhost 9991",
+    "dvnew": "concurrently \"cross-env BROWSER=none\" \"wait-on http://localhost:8080 && electron .\"",
+    "dvne": "electron .\"",
+    "epack": "electron-builder --dir",
+    "edist": "electron-builder"
   },
   "keywords": [
     "rfpm"
@@ -14,11 +18,19 @@
   "author": "Diego Ruiz",
   "license": "ISC",
   "dependencies": {
+    "cross-env": "6.0.2",
     "mysql2": "^2.1.0",
     "rfnoderest": "../rfnoderest",
     "sequelize": "^5.21.4"
   },
   "devDependencies": {
-    "nodemon": "^2.0.1"
+    "nodemon": "^2.0.1",
+    "concurrently": "5.2.0",
+    "electron": "8.2.5",
+    "electron-builder": "^22.6.0",
+    "wait-on": "4.0.2"
+  },
+  "build": {
+    "appId": "rfpm"
   }
 }

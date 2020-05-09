@@ -7,57 +7,62 @@ function wiki(paramsDatabase, user, proyect) {
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     title: {
       type: Sequelize.STRING,
-      notNull: true
+      notNull: true,
     },
     description: {
       type: Sequelize.TEXT,
-      notNull: true
+      notNull: true,
     },
     proyectId: {
       type: Sequelize.INTEGER,
-      notNull: true
+      notNull: true,
     },
     userCreateId: {
       type: Sequelize.INTEGER,
-      notNull: true
+      notNull: true,
     },
     userUpdateId: {
       type: Sequelize.INTEGER,
-      notNull: true
-    }
+      notNull: true,
+    },
+    hashtags: {
+      type: Sequelize.STRING,
+      notNull: false,
+    },
   });
 
   Wiki.belongsTo(proyect.model, { as: "Proyect", foreignKey: "proyectId" });
 
   Wiki.belongsTo(user.model, {
     as: "UserCreate",
-    foreignKey: "userCreateId"
+    foreignKey: "userCreateId",
   });
 
   Wiki.belongsTo(user.model, {
     as: "UserUpdate",
-    foreignKey: "userUpdateId"
+    foreignKey: "userUpdateId",
   });
 
-  Wiki.loadNew = async function() {
+  Wiki.loadNew = async function () {
     const instance = await Wiki.build();
     instance.dataValues.title = null;
     instance.dataValues.description = null;
     instance.dataValues.proyectId = null;
     instance.dataValues.Proyect = { id: null, code: null, description: null };
+    instance.dataValues.hashtags = null;
 
     return instance;
   };
 
   let dao = rfnoderest.databaseSequelize.BaseDaoSequelize;
 
-  return new dao(Wiki);
+  return new dao(paramsDatabase, Wiki);
 }
 
 module.exports = {
-  dao: wiki
+  dao: wiki,
 };

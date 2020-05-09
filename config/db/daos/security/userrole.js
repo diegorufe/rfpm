@@ -9,34 +9,34 @@ function userrole(paramsDatabase, user, rol) {
       userId: {
         type: Sequelize.INTEGER,
         primaryKey: true,
-        notNull: true
+        notNull: true,
       },
       roleId: {
         type: Sequelize.INTEGER,
         primaryKey: true,
-        notNull: true
-      }
+        notNull: true,
+      },
     },
     {
-      timestamps: false
+      timestamps: false,
     }
   );
 
   UserRole.belongsTo(user.model, {
     as: "User",
-    foreignKey: "userId"
+    foreignKey: "userId",
   });
 
   UserRole.belongsTo(rol.model, {
     as: "Role",
-    foreignKey: "roleId"
+    foreignKey: "roleId",
   });
 
   let dao = rfnoderest.databaseSequelize.BaseDaoSequelize;
 
-  return new dao(UserRole);
+  return new dao(paramsDatabase, UserRole);
 }
 
 module.exports = {
-  dao: userrole
+  dao: userrole,
 };

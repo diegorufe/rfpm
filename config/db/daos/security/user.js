@@ -7,31 +7,31 @@ function user(paramsDatabase) {
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     nick: {
       type: Sequelize.STRING,
       notNull: true,
-      unique: true
+      unique: true,
     },
     password: {
       type: Sequelize.TEXT("tiny"),
-      notNull: true
+      notNull: true,
     },
     userCreateId: {
       type: Sequelize.INTEGER,
-      notNull: false
+      notNull: false,
     },
     userUpdateId: {
       type: Sequelize.INTEGER,
-      notNull: false
+      notNull: false,
     },
     passwordChange: {
-      type: Sequelize.VIRTUAL
-    }
+      type: Sequelize.VIRTUAL,
+    },
   });
 
-  User.loadNew = async function() {
+  User.loadNew = async function () {
     const instance = await User.build();
     instance.dataValues.nick = null;
     instance.dataValues.passwordChange = null;
@@ -47,9 +47,9 @@ function user(paramsDatabase) {
 
   let dao = rfnoderest.databaseSequelize.BaseDaoSequelize;
 
-  return new dao(User);
+  return new dao(paramsDatabase, User);
 }
 
 module.exports = {
-  dao: user
+  dao: user,
 };

@@ -7,37 +7,37 @@ function proyect(paramsDatabase, user) {
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     code: {
       type: Sequelize.STRING,
       notNull: true,
-      unique: true
+      unique: true,
     },
     description: {
       type: Sequelize.STRING,
-      notNull: true
+      notNull: true,
     },
     userCreateId: {
       type: Sequelize.INTEGER,
-      notNull: true
+      notNull: true,
     },
     userUpdateId: {
       type: Sequelize.INTEGER,
-      notNull: true
-    }
+      notNull: true,
+    },
   });
 
   Proyect.belongsTo(user.model, {
     as: "UserCreate",
-    foreignKey: "userCreateId"
+    foreignKey: "userCreateId",
   });
   Proyect.belongsTo(user.model, {
     as: "UserUpdate",
-    foreignKey: "userUpdateId"
+    foreignKey: "userUpdateId",
   });
 
-  Proyect.loadNew = async function() {
+  Proyect.loadNew = async function () {
     const instance = await Proyect.build();
     instance.dataValues.code = null;
     instance.dataValues.description = null;
@@ -46,9 +46,9 @@ function proyect(paramsDatabase, user) {
 
   let dao = rfnoderest.databaseSequelize.BaseDaoSequelize;
 
-  return new dao(Proyect);
+  return new dao(paramsDatabase, Proyect);
 }
 
 module.exports = {
-  dao: proyect
+  dao: proyect,
 };

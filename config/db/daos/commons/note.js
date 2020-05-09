@@ -7,28 +7,32 @@ function note(paramsDatabase, user, proyect, tag) {
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     description: {
       type: Sequelize.TEXT,
-      notNull: true
+      notNull: true,
     },
     proyectId: {
       type: Sequelize.INTEGER,
-      notNull: true
+      notNull: true,
     },
     tagId: {
       type: Sequelize.INTEGER,
-      notNull: true
+      notNull: true,
     },
     userCreateId: {
       type: Sequelize.INTEGER,
-      notNull: true
+      notNull: true,
     },
     userUpdateId: {
       type: Sequelize.INTEGER,
-      notNull: true
-    }
+      notNull: true,
+    },
+    hashtags: {
+      type: Sequelize.STRING,
+      notNull: false,
+    },
   });
 
   Note.belongsTo(proyect.model, { as: "Proyect", foreignKey: "proyectId" });
@@ -36,15 +40,15 @@ function note(paramsDatabase, user, proyect, tag) {
 
   Note.belongsTo(user.model, {
     as: "UserCreate",
-    foreignKey: "userCreateId"
+    foreignKey: "userCreateId",
   });
 
   Note.belongsTo(user.model, {
     as: "UserUpdate",
-    foreignKey: "userUpdateId"
+    foreignKey: "userUpdateId",
   });
 
-  Note.loadNew = async function() {
+  Note.loadNew = async function () {
     const instance = await Note.build();
     instance.dataValues.description = null;
     instance.dataValues.proyectId = null;
@@ -54,17 +58,18 @@ function note(paramsDatabase, user, proyect, tag) {
       id: null,
       code: null,
       description: null,
-      color: "#fffffff"
+      color: "#fffffff",
     };
+    instance.dataValues.hashtags = null;
 
     return instance;
   };
 
   let dao = rfnoderest.databaseSequelize.BaseDaoSequelize;
 
-  return new dao(Note);
+  return new dao(paramsDatabase, Note);
 }
 
 module.exports = {
-  dao: note
+  dao: note,
 };
