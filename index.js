@@ -1,7 +1,7 @@
 /**
  * Indicate is electron app
  */
-const IS_ELECTRONA_APP = true;
+const IS_ELECTRONA_APP = false;
 /**
  * Indicate is dev operation
  */
