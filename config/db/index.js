@@ -57,11 +57,6 @@ async function createDaos(paramsDatabase) {
     MAP_DAOS["Proyect"]
   );
 
-  MAP_DAOS["Repository"] = require("./daos/commons/repository").dao(
-    paramsDatabase,
-    MAP_DAOS["User"]
-  );
-
   return MAP_DAOS;
 }
 

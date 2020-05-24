@@ -13,7 +13,6 @@ function createRoutes(expressApp) {
   require("./commons/tag").route(expressApp);
   require("./commons/note").route(expressApp);
   require("./commons/wiki").route(expressApp);
-  require("./commons/repository").route(expressApp);
 }
 
 module.exports = {

@@ -10,7 +10,6 @@ Proyect manager
 - Migrate proyect front for vue and addded wiki.
 - Hastag for notes and wiki for increase search keyworkds
 
-## 0.0.3b (10-05-2020 <-> 01-09-2020) 
+## 0.0.3b 
 - Added dates crud operations in crud mode in notes and wiki
 - Fix ussue label nick and password from crud users.
-- Add repositories for manage repostory for users
