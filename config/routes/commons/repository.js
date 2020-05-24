@@ -42,6 +42,18 @@ function repository(expressApp) {
       });
     }
 
+    if (
+      action === "/add" ||
+      (action == "/edit" &&
+        bodyData.urlChange != null &&
+        bodyData.urlChange != undefined &&
+        bodyData.urlChange.trim() != "")
+    ) {
+      bodyData.url = expressApp.encryptJsonSession({
+        url: bodyData.urlChange.trim(),
+      });
+    }
+
     bodyRequest.data = bodyData;
 
     return bodyRequest;

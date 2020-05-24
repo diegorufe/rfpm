@@ -61,6 +61,7 @@ function repository(paramsDatabase, user) {
     instance.dataValues.tagId = null;
     instance.dataValues.passwordChange = null;
     instance.dataValues.userNameChange = null;
+    instance.dataValues.urlChange = null;
 
     return instance;
   };
