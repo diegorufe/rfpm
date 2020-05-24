@@ -27,29 +27,39 @@ async function createDaos(paramsDatabase) {
   // Commons
   MAP_DAOS["User"] = require("./daos/security/user").dao(paramsDatabase);
   MAP_DAOS["Role"] = require("./daos/security/role").dao(paramsDatabase);
+
   MAP_DAOS["UserRole"] = require("./daos/security/userrole").dao(
     paramsDatabase,
     MAP_DAOS["User"],
     MAP_DAOS["Role"]
   );
+
   MAP_DAOS["Proyect"] = require("./daos/commons/proyect").dao(
     paramsDatabase,
     MAP_DAOS["User"]
   );
+
   MAP_DAOS["Tag"] = require("./daos/commons/tag").dao(
     paramsDatabase,
     MAP_DAOS["User"]
   );
+
   MAP_DAOS["Note"] = require("./daos/commons/note").dao(
     paramsDatabase,
     MAP_DAOS["User"],
     MAP_DAOS["Proyect"],
     MAP_DAOS["Tag"]
   );
+
   MAP_DAOS["Wiki"] = require("./daos/commons/wiki").dao(
     paramsDatabase,
     MAP_DAOS["User"],
     MAP_DAOS["Proyect"]
+  );
+
+  MAP_DAOS["Repository"] = require("./daos/commons/repository").dao(
+    paramsDatabase,
+    MAP_DAOS["User"]
   );
 
   return MAP_DAOS;
@@ -57,5 +67,5 @@ async function createDaos(paramsDatabase) {
 
 module.exports = {
   initDatabase: initDatabase,
-  createDaos: createDaos
+  createDaos: createDaos,
 };

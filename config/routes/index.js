@@ -7,14 +7,15 @@ function createRoutes(expressApp) {
   require("./security/user").route(expressApp);
   require("./security/role").route(expressApp);
   require("./security/userrole").route(expressApp);
-  
+
   // Commons
   require("./commons/proyect").route(expressApp);
   require("./commons/tag").route(expressApp);
   require("./commons/note").route(expressApp);
   require("./commons/wiki").route(expressApp);
+  require("./commons/repository").route(expressApp);
 }
 
 module.exports = {
-  createRoutes: createRoutes
+  createRoutes: createRoutes,
 };

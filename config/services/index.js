@@ -32,6 +32,10 @@ function createServices(expressApp, mapDaos) {
     "Wiki",
     require("./commons/wiki").wiki(mapDaos["Wiki"])
   );
+  expressApp.addService(
+    "Repository",
+    require("./commons/repository").wiki(mapDaos["Repository"])
+  );
 }
 
 module.exports = {
