@@ -60,6 +60,7 @@ function repository(paramsDatabase, user) {
     instance.dataValues.userId = null;
     instance.dataValues.tagId = null;
     instance.dataValues.passwordChange = null;
+    instance.dataValues.userNameChange = null;
 
     return instance;
   };

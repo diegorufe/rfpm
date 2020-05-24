@@ -30,6 +30,18 @@ function repository(expressApp) {
       });
     }
 
+    if (
+      action === "/add" ||
+      (action == "/edit" &&
+        bodyData.userNameChange != null &&
+        bodyData.userNameChange != undefined &&
+        bodyData.userNameChange.trim() != "")
+    ) {
+      bodyData.userName = expressApp.encryptJsonSession({
+        userName: bodyData.userNameChange.trim(),
+      });
+    }
+
     bodyRequest.data = bodyData;
 
     return bodyRequest;
